@@ -4,14 +4,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.io.Serializable;
 
 /**
  * Created by luissantos on 06/06/16.
  */
-@SuppressWarnings("serial")
 @MappedSuperclass
-public class GenericDomain implements Serializable {
+public class GenericDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;

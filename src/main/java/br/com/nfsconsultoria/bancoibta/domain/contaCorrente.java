@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 /**
  * Created by luissantos on 06/06/16.
  */
+@SuppressWarnings("serial")
 @Entity
 public class contaCorrente extends GenericDomain {
 
@@ -16,13 +17,13 @@ public class contaCorrente extends GenericDomain {
     private String cpf;
 
     @Column(nullable = false, length = 45)
-    private Long conta;
+    private String conta;
 
     @Column(nullable = false, length = 45)
-    private Float saldo;
+    private Double saldo;
 
     @Column(nullable = false, length = 45)
-    private Float limite;
+    private Double limite;
 
     public String getNome() {
         return nome;
@@ -40,27 +41,27 @@ public class contaCorrente extends GenericDomain {
         this.cpf = cpf;
     }
 
-    public Long getConta() {
+    public String getConta() {
         return conta;
     }
 
-    public void setConta(Long conta) {
+    public void setConta(String conta) {
         this.conta = conta;
     }
 
-    public Float getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Float saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
-    public Float getLimite() {
+    public Double getLimite() {
         return limite;
     }
 
-    public void setLimite(Float limite) {
+    public void setLimite(Double limite) {
         this.limite = limite;
     }
 }
