@@ -17,7 +17,8 @@ public class GenericDAO<Entidade> {
     private Class<Entidade> classe;
 
     // Contrutor
-    public GenericDAO() {
+    @SuppressWarnings("unchecked")
+	public GenericDAO() {
         this.classe = (Class<Entidade>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }
@@ -94,13 +95,14 @@ public class GenericDAO<Entidade> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public Entidade buscar(Long codigo) {
         Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
         try {
             Criteria consulta = sessao.createCriteria(classe);
             consulta.add(Restrictions.idEq(codigo));
-            Entidade resultado = (Entidade) consulta.uniqueResult();
+			Entidade resultado = (Entidade) consulta.uniqueResult();
             return resultado;
         } catch (RuntimeException erro) {
             throw erro;
@@ -109,12 +111,13 @@ public class GenericDAO<Entidade> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> listar() {
         Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
         try {
             Criteria consulta = sessao.createCriteria(classe);
-            List<Entidade> resultado = consulta.list();
+			List<Entidade> resultado = consulta.list();
             return resultado;
         } catch (RuntimeException erro) {
             throw erro;
@@ -123,6 +126,7 @@ public class GenericDAO<Entidade> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> listarCod(Long codigo) {
         Session sesao = HibernateUtil.getFabricaDeSessoes().openSession();
 
@@ -138,11 +142,12 @@ public class GenericDAO<Entidade> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public List<Entidade> listarLazy(String objeto) {
         Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
-        try {
-            Criteria consulta = sessao.createCriteria(classe).setFetchMode(objeto, FetchMode.EAGER);
+        try {           
+			Criteria consulta = sessao.createCriteria(classe).setFetchMode(objeto, FetchMode.EAGER);
             List<Entidade> resultado = consulta.list();
             return resultado;
         } catch (RuntimeException erro) {

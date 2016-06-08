@@ -18,33 +18,34 @@
                     <f:facet name="header">
                         <p:commandButton value="Novo Cadastro" actionListener="#{contaCBean.novo}"
                                          oncomplete="PF('dialogo').show();"
-                                         update=":mensagem :formCadastro:painel">
+                                         update=":mensagem :formCadastro:painel :formCadastro:valor">
                             <f:actionListener
                                     type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
 
                     </f:facet>
                     <p:column headerText="Correntista" filterBy="#{conta.nome}"
-                              sortBy="#{conta.nome}" colspan="1">
+                              sortBy="#{conta.nome}" colspan="1" 
+                              filterMatchMode="contains">
                         <h:outputText value="#{conta.nome}"/>
                     </p:column>
 
                     <p:column headerText="CPF" filterBy="#{conta.cpf}"
-                              sortBy="#{conta.cpf}">
+                              sortBy="#{conta.cpf}" filterMatchMode="contains">
                         <h:outputText value="#{conta.cpf}"/>
 
                     </p:column><p:column headerText="Conta" filterBy="#{conta.conta}"
-                                         sortBy="#{conta.conta}">
+                                         sortBy="#{conta.conta}" filterMatchMode="contains">
                     <h:outputText value="#{conta.conta}"/>
                 </p:column>
 
                     <p:column headerText="Saldo" filterBy="#{conta.saldo}"
-                              sortBy="#{conta.saldo}">
+                              sortBy="#{conta.saldo}" filterMatchMode="contains">
                         <h:outputText value="#{conta.saldo} R$"/>
                     </p:column>
 
                     <p:column headerText="Limite" filterBy="#{conta.limite}"
-                              sortBy="#{conta.limite}">
+                              sortBy="#{conta.limite}" filterMatchMode="contains" >
                         <h:outputText value="#{conta.limite} R$"/>
                     </p:column>
 
@@ -59,7 +60,7 @@
 
                         <p:commandButton icon="ui-icon-pencil"
                                          actionListener="#{contaCBean.editar}"
-                                         update=":mensagem :formCadastro:painel"
+                                         update=":mensagem :formCadastro:painel :formCadastro:valor"
                                          oncomplete="PF('dialogo').show();">
                             <f:attribute name="contaSelecionada" value="#{conta}"/>
                             <f:actionListener
@@ -97,27 +98,34 @@
                                  requiredMessage="O campo correntista é obrigatório"/>
 
                     <p:outputLabel for="cpf" value="CPF:"/>
-                    <p:inputMask id="cpf" mask="999.999.999-99" value="#{contaCBean.cCorrente.cpf}"/>
+                    <p:inputMask id="cpf" mask="999.999.999-99" 
+                                 value="#{contaCBean.cCorrente.cpf}"/>
 
                     <p:outputLabel for="ct" value="Conta:"/>
-                    <p:inputMask id="ct" mask="99999999" value="#{contaCBean.cCorrente.conta}"/>
+                    <p:inputMask id="ct" mask="99999999" 
+                                 value="#{contaCBean.cCorrente.conta}"/>
 
+                </h:panelGrid>
+                    <p:panelGrid id="valor" columns="3">
                     <p:outputLabel for="saldo" value="Saldo:"/>
                     <p:inputText id="saldo" required="true"
+                                 size="10"
                                  requiredMessage="Campo saldo obrigatório"
-                                 value="#{contaCBean.cCorrente.saldo}"/>
+                                 value="#{contaCBean.cCorrente.saldo}"/> R$
+                    
 
                     <p:outputLabel for="limite" value="Limite:"/>
                     <p:inputText id="limite" required="true"
+                                 size="10"
                                  requiredMessage="Campo limite obrigatório"
-                                 value="#{contaCBean.cCorrente.limite}"/>
-
-                </h:panelGrid>
+                                 value="#{contaCBean.cCorrente.limite}"/> R$
+                    </p:panelGrid>
 
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar"
                                      actionListener="#{contaCBean.salvar}"
-                                     update=":mensagem :formCadastro:painel :formListagem:tabela"/>
+                                     update=":mensagem :formCadastro:painel 
+                                     :formCadastro:valor :formListagem:tabela"/>
 
                     <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
                 </h:panelGrid>
@@ -139,11 +147,11 @@
                     <h:outputText id="Vct" value="#{contaCBean.cCorrente.conta}"/>
 
                     <p:outputLabel for="Vsaldo" value="Saldo:" style="font-weight: bold"/>
-                    <h:outputText id="Vsaldo" value="#{contaCBean.cCorrente.saldo}"/>
+                    <h:outputText id="Vsaldo" value="#{contaCBean.cCorrente.saldo} R$"/>
 
                     <p:outputLabel for="Vlimite" value="Limite:"
                                    style="font-weight: bold"/>
-                    <h:outputText id="Vlimite" value="#{contaCBean.cCorrente.limite}"/>
+                    <h:outputText id="Vlimite" value="#{contaCBean.cCorrente.limite} R$"/>
 
                 </h:panelGrid>
 
