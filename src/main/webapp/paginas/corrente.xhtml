@@ -12,7 +12,7 @@
         <h:form id="formListagem">
             <p:panel header="Clientes">
                 <p:dataTable id="tabela" emptyMessage="Nenhuma conta encontrada." var="conta" paginator="true"
-                             value="#{contaCBean.cCorrente}" rows="10" paginatorPosition="top" rendered="true"
+                             value="#{contaCBean.cCorrentes}" rows="10" paginatorPosition="top" rendered="true"
                              liveResize="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink}">
                     <f:facet name="header">
@@ -24,28 +24,28 @@
                         </p:commandButton>
 
                     </f:facet>
-                    <p:column headerText="Correntista" filterBy="#{conta.conta}"
+                    <p:column headerText="Correntista" filterBy="#{conta.nome}"
                               sortBy="#{conta.nome}" colspan="1" 
                               filterMatchMode="contains">
                         <h:outputText value="#{conta.nome}"/>
                     </p:column>
 
                     <p:column headerText="CPF" filterBy="#{conta.cpf}"
-                              sortBy="#{conta.cpf}">
+                              sortBy="#{conta.cpf}" filterMatchMode="contains">
                         <h:outputText value="#{conta.cpf}"/>
 
                     </p:column><p:column headerText="Conta" filterBy="#{conta.conta}"
-                                         sortBy="#{conta.conta}">
+                                         sortBy="#{conta.conta}" filterMatchMode="contains">
                     <h:outputText value="#{conta.conta}"/>
                 </p:column>
 
                     <p:column headerText="Saldo" filterBy="#{conta.saldo}"
-                              sortBy="#{conta.saldo}">
+                              sortBy="#{conta.saldo}" filterMatchMode="contains">
                         <h:outputText value="#{conta.saldo} R$"/>
                     </p:column>
 
                     <p:column headerText="Limite" filterBy="#{conta.limite}"
-                              sortBy="#{conta.limite}">
+                              sortBy="#{conta.limite}" filterMatchMode="contains" >
                         <h:outputText value="#{conta.limite} R$"/>
                     </p:column>
 
