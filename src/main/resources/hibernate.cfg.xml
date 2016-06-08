@@ -10,7 +10,7 @@
         <property name="connection.username">aptech</property>
         <property name="connection.password">Aptech2016</property>
         <!-- Esquema de atualização das tabelas -->
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">update</property>
         <!-- Sessão -->
         <property name="hibernate.current_session_context_class">
             org.hibernate.context.internal.ThreadLocalSessionContext

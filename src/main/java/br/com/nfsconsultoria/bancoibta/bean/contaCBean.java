@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.SessionScoped;
 
 /**
  * Created by luis on 07/06/16.
@@ -17,6 +18,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
+@SessionScoped
 public class contaCBean implements Serializable {
 
     private contaCorrente cCorrente;
