@@ -24,7 +24,7 @@
         <!-- Mostra as SQLs geradas -->
         <property name="show_sql">true</property>
         <!-- Mapeameno das Entidades -->
-        <mapping class="br.com.nfsconsultoria.bancoibta.domain.contaCorrente"/>
-        <mapping class="br.com.nfsconsultoria.bancoibta.domain.contaPoupanca"/>
+        <mapping class="br.com.nfsconsultoria.bancoibta.domain.ContaCorrente"/>
+        <mapping class="br.com.nfsconsultoria.bancoibta.domain.ContaPoupanca"/>
     </session-factory>
 </hibernate-configuration>

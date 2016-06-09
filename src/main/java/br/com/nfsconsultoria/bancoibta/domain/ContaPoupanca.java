@@ -1,5 +1,6 @@
 package br.com.nfsconsultoria.bancoibta.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -8,7 +9,7 @@ import javax.persistence.Entity;
  */
 @SuppressWarnings("serial")
 @Entity
-public class contaCorrente extends GenericDomain {
+public class ContaPoupanca extends GenericDomain implements Serializable {
 
     @Column(nullable = false, length = 45)
     private String nome;
@@ -21,9 +22,6 @@ public class contaCorrente extends GenericDomain {
 
     @Column(nullable = false, length = 45)
     private Double saldo;
-
-    @Column(nullable = false, length = 45)
-    private Double limite;
 
     public String getNome() {
         return nome;
@@ -55,13 +53,5 @@ public class contaCorrente extends GenericDomain {
 
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
-    }
-
-    public Double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(Double limite) {
-        this.limite = limite;
     }
 }

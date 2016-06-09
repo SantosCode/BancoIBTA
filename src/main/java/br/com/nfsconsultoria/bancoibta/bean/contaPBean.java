@@ -1,7 +1,7 @@
 package br.com.nfsconsultoria.bancoibta.bean;
 
-import br.com.nfsconsultoria.bancoibta.dao.contaPoupancaDAO;
-import br.com.nfsconsultoria.bancoibta.domain.contaPoupanca;
+import br.com.nfsconsultoria.bancoibta.dao.ContaPoupancaDAO;
+import br.com.nfsconsultoria.bancoibta.domain.ContaPoupanca;
 import org.omnifaces.util.Messages;
 
 import javax.faces.bean.ManagedBean;
@@ -16,34 +16,43 @@ import java.util.List;
 @SessionScoped
 public class contaPBean {
 
-    private contaPoupanca cPoupanca;
-    private List<contaPoupanca> cPoupancas;
+    private ContaPoupanca poupanca;
+    private List<ContaPoupanca> poupancas;
+    private Double valor;
 
     public contaPBean() {
-        contaPoupancaDAO contaDAO = new contaPoupancaDAO();
-        this.cPoupancas = contaDAO.listar();
+        ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+        this.poupancas = contaDAO.listar();
     }
 
-    public contaPoupanca getcPoupanca() {
-        return cPoupanca;
+    public ContaPoupanca getPoupanca() {
+        return poupanca;
     }
 
-    public void setcPoupanca(contaPoupanca cPoupanca) {
-        this.cPoupanca = cPoupanca;
+    public void setPoupanca(ContaPoupanca poupanca) {
+        this.poupanca = poupanca;
     }
 
-    public List<contaPoupanca> getcPoupancas() {
-        return cPoupancas;
+    public List<ContaPoupanca> getPoupancas() {
+        return poupancas;
     }
 
-    public void setcPoupancas(List<contaPoupanca> cPoupancas) {
-        this.cPoupancas = cPoupancas;
+    public void setPoupancas(List<ContaPoupanca> poupancas) {
+        this.poupancas = poupancas;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public void listar() {
         try {
-            contaPoupancaDAO contaDAO = new contaPoupancaDAO();
-            this.cPoupancas = contaDAO.listar();
+            ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+            this.poupancas = contaDAO.listar();
         } catch (RuntimeException erro) {
             Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()
                     + " ao tentar listar conta poupança");
@@ -52,13 +61,13 @@ public class contaPBean {
     }
 
     public void novo() {
-        this.cPoupanca = new contaPoupanca();
+        this.poupanca = new ContaPoupanca();
     }
 
     public void salvar() {
         try {
-            contaPoupancaDAO contaDAO = new contaPoupancaDAO();
-            contaDAO.merge(cPoupanca);
+            ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+            contaDAO.merge(poupanca);
             listar();
             novo();
             Messages.addGlobalInfo("Conta poupança salva com sucesso");
@@ -73,7 +82,7 @@ public class contaPBean {
 
         try {
             listar();
-            cPoupanca = (contaPoupanca) evento.getComponent().getAttributes()
+            poupanca = (ContaPoupanca) evento.getComponent().getAttributes()
                     .get("contaSelecionada");
         } catch (RuntimeException erro) {
             Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()
@@ -85,16 +94,65 @@ public class contaPBean {
     public void excluir(ActionEvent evento) {
 
         try {
-            cPoupanca = (contaPoupanca) evento.getComponent().getAttributes()
+            poupanca = (ContaPoupanca) evento.getComponent().getAttributes()
                     .get("contaSelecionada");
-            contaPoupancaDAO contaDAO = new contaPoupancaDAO();
-            contaDAO.excluir(cPoupanca);
+            ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+            contaDAO.excluir(poupanca);
             listar();
             novo();
             Messages.addGlobalInfo("Conta poupanca excluida com sucesso");
         } catch (RuntimeException erro) {
             Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()
                     + " ao tentar excluir conta poupança");
+            erro.printStackTrace();
+        }
+    }
+    
+    public void sacar() {
+
+        try {
+            ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+            if (valor != null && valor > 0) {
+
+                if (valor <= poupanca.getSaldo()) {
+                    poupanca.setSaldo(poupanca.getSaldo() - valor);
+                    contaDAO.merge(poupanca);
+                    this.valor = null;
+                    listar();
+                } else {
+                    Messages.addGlobalError("Saldo insuficiente");
+                    listar();
+                    this.valor = null;
+                }
+            } else {
+                Messages.addGlobalError("Valor incorreto");
+            }
+
+        } catch (RuntimeException erro) {
+            Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()
+                    + " ao tentar editar conta corrente");
+            erro.printStackTrace();
+        }
+    }
+
+    public void depositar() {
+
+        try {
+            ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+            if (valor != null && valor > 0) {
+                poupanca.setSaldo(poupanca.getSaldo() + valor);
+                contaDAO.merge(poupanca);
+                this.valor = null;
+                listar();
+            } else {
+                Messages.addGlobalError("Deposito inválido");
+                listar();
+                this.valor = null;
+            }
+
+        } catch (RuntimeException erro) {
+            Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()
+                    + " ao tentar editar conta corrente");
             erro.printStackTrace();
         }
     }
