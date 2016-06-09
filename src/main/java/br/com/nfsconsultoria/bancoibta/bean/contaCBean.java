@@ -11,18 +11,19 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by luis on 07/06/16.
+ * Created by luissantos on 07/06/16.
+ * @author luissantos
  */
 @SuppressWarnings("serial")
 @ManagedBean
 @SessionScoped
-public class contaCBean implements Serializable {
+public class ContaCBean implements Serializable {
 
     private ContaCorrente corrente;
     private List<ContaCorrente> correntes;
     private Double valor;
 
-    public contaCBean() {
+    public ContaCBean() {
         ContaCorrenteDAO contaDAO = new ContaCorrenteDAO();
         this.correntes = contaDAO.listar();
     }

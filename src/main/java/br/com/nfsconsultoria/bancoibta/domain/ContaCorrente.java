@@ -1,11 +1,13 @@
 package br.com.nfsconsultoria.bancoibta.domain;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 /**
  * Created by luissantos on 06/06/16.
+ *
+ * @author luissantos
  */
 @SuppressWarnings("serial")
 @Entity

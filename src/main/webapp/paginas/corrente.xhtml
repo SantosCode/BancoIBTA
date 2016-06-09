@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -23,33 +23,33 @@
                                          oncomplete="PF('dialogo').show();"
                                          update=":mensagem :formCadastro:painel :formCadastro:valor">
                             <f:actionListener
-                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
 
                     </f:facet>
                     <p:column headerText="Correntista" filterBy="#{conta.nome}"
                               sortBy="#{conta.nome}" colspan="1" filterMatchMode="contains">
-                        <h:outputText value="#{conta.nome}" />
+                        <h:outputText value="#{conta.nome}"/>
                     </p:column>
 
                     <p:column headerText="CPF" filterBy="#{conta.cpf}"
                               sortBy="#{conta.cpf}" filterMatchMode="contains">
-                        <h:outputText value="#{conta.cpf}" />
+                        <h:outputText value="#{conta.cpf}"/>
 
                     </p:column>
                     <p:column headerText="Conta" filterBy="#{conta.conta}"
                               sortBy="#{conta.conta}" filterMatchMode="contains">
-                        <h:outputText value="#{conta.conta}" />
+                        <h:outputText value="#{conta.conta}"/>
                     </p:column>
 
                     <p:column headerText="Saldo" filterBy="#{conta.saldo}"
                               sortBy="#{conta.saldo}" filterMatchMode="contains">
-                        <h:outputText value="#{conta.saldo} R$" />
+                        <h:outputText converter="javax.faces.Number" value="#{conta.saldo} R$"/>
                     </p:column>
 
                     <p:column headerText="Limite" filterBy="#{conta.limite}"
                               sortBy="#{conta.limite}" filterMatchMode="contains">
-                        <h:outputText value="#{conta.limite} R$" />
+                        <h:outputText converter="javax.faces.Number" value="#{conta.limite} R$"/>
                     </p:column>
 
                     <p:column headerText="Opções" exportable="false">
@@ -58,14 +58,14 @@
                                          actionListener="#{contaCBean.excluir}"
                                          update=":mensagem :formListagem:tabela">
                             <p:confirm header="Confirmação"
-                                       message="Deseja excluir a conta corrente?" icon="ui-icon-alert" />
-                            <f:attribute name="contaSelecionada" value="#{conta}" />
+                                       message="Deseja excluir a conta corrente?" icon="ui-icon-alert"/>
+                            <f:attribute name="contaSelecionada" value="#{conta}"/>
                         </p:commandButton>
                         <p:confirmDialog global="true">
                             <p:commandButton value="Sim" type="button"
-                                             styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                             styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
                             <p:commandButton value="Não" type="button"
-                                             styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                             styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
                         </p:confirmDialog>
 
                         <!-- Edita o item no banco de dados -->
@@ -73,9 +73,9 @@
                                          actionListener="#{contaCBean.editar}"
                                          update=":mensagem :formCadastro:painel :formCadastro:valor"
                                          oncomplete="PF('dialogo').show();">
-                            <f:attribute name="contaSelecionada" value="#{conta}" />
+                            <f:attribute name="contaSelecionada" value="#{conta}"/>
                             <f:actionListener
-                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
 
                         <!-- Visualiza o item no banco de dados -->
@@ -83,9 +83,9 @@
                                          actionListener="#{contaCBean.editar}"
                                          update=":mensagem :formListagem:tabela"
                                          oncomplete="PF('dlgVisu').show();">
-                            <f:attribute name="contaSelecionada" value="#{conta}" />
+                            <f:attribute name="contaSelecionada" value="#{conta}"/>
                             <f:actionListener
-                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
 
                         <!-- Efetua a transação de saque na conta -->
@@ -93,19 +93,19 @@
                                          actionListener="#{contaCBean.editar}"
                                          update=":mensagem :formListagem:tabela :formSaque:Svalor"
                                          oncomplete="PF('dlgSaque').show();">
-                            <f:attribute name="contaSelecionada" value="#{conta}" />
+                            <f:attribute name="contaSelecionada" value="#{conta}"/>
                             <f:actionListener
-                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
-                        
+
                         <!-- Efetua a transação de deposito na conta -->
                         <p:commandButton icon="ui-icon-circlesmall-plus" value="Deposito"
                                          actionListener="#{contaCBean.editar}"
                                          update=":mensagem :formListagem:tabela :formDep:Dvalor"
                                          oncomplete="PF('dlgDep').show();">
-                            <f:attribute name="contaSelecionada" value="#{conta}" />
+                            <f:attribute name="contaSelecionada" value="#{conta}"/>
                             <f:actionListener
-                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
@@ -119,42 +119,44 @@
 
             <h:form id="formCadastro">
                 <h:panelGrid id="painel" columns="2">
-                    <p:outputLabel for="nome" value="Correntista:" />
+                    <p:outputLabel for="nome" value="Correntista:"/>
                     <p:inputText id="nome" maxlength="45" size="30"
                                  value="#{contaCBean.corrente.nome}" required="true"
-                                 requiredMessage="O campo correntista é obrigatório" />
+                                 requiredMessage="O campo correntista é obrigatório"/>
 
-                    <p:outputLabel for="cpf" value="CPF:" />
+                    <p:outputLabel for="cpf" value="CPF:"/>
                     <p:inputMask id="cpf" mask="999.999.999-99" required="true"
                                  requiredMessage="O campo cpf é obrigatório"
-                                 value="#{contaCBean.corrente.cpf}" />
+                                 value="#{contaCBean.corrente.cpf}"/>
 
-                    <p:outputLabel for="ct" value="Conta:" />
+                    <p:outputLabel for="ct" value="Conta:"/>
                     <p:inputMask id="ct" mask="99999999" required="true"
                                  requiredMessage="O campo conta é obrigatório"
-                                 value="#{contaCBean.corrente.conta}" />
+                                 value="#{contaCBean.corrente.conta}"/>
 
                 </h:panelGrid>
                 <p:panelGrid id="valor" columns="3">
-                    <p:outputLabel for="saldo" value="Saldo:" />
+                    <p:outputLabel for="saldo" value="Saldo:"/>
                     <p:inputText id="saldo" required="true" size="10"
                                  requiredMessage="Campo saldo obrigatório"
-                                 value="#{contaCBean.corrente.saldo}" /> R$
+                                 converter="javax.faces.Number"
+                                 value="#{contaCBean.corrente.saldo}"/> R$
 
 
-                    <p:outputLabel for="limite" value="Limite:" />
+                    <p:outputLabel for="limite" value="Limite:"/>
                     <p:inputText id="limite" required="true" size="10"
                                  requiredMessage="Campo limite obrigatório"
-                                 value="#{contaCBean.corrente.limite}" /> R$
+                                 converter="javax.faces.Number"
+                                 value="#{contaCBean.corrente.limite}"/> R$
                 </p:panelGrid>
 
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar"
                                      actionListener="#{contaCBean.salvar}"
                                      update=":mensagem :formCadastro:painel 
-                                     :formCadastro:valor :formListagem:tabela" />
+                                     :formCadastro:valor :formListagem:tabela"/>
 
-                    <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+                    <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
                 </h:panelGrid>
             </h:form>
         </p:dialog>
@@ -167,31 +169,32 @@
 
                 <h:panelGrid id="Vpainel" columns="2">
                     <p:outputLabel for="Vnome" value="Correntista:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Vnome" value="#{contaCBean.corrente.nome}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Vnome" value="#{contaCBean.corrente.nome}"/>
 
-                    <p:outputLabel for="Vcpf" value="CPF:" style="font-weight: bold" />
-                    <h:outputText id="Vcpf" value="#{contaCBean.corrente.cpf}" />
+                    <p:outputLabel for="Vcpf" value="CPF:" style="font-weight: bold"/>
+                    <h:outputText id="Vcpf" value="#{contaCBean.corrente.cpf}"/>
 
-                    <p:outputLabel for="Vct" value="Conta:" style="font-weight: bold" />
-                    <h:outputText id="Vct" value="#{contaCBean.corrente.conta}" />
+                    <p:outputLabel for="Vct" value="Conta:" style="font-weight: bold"/>
+                    <h:outputText id="Vct" value="#{contaCBean.corrente.conta}"/>
 
                     <p:outputLabel for="Vsaldo" value="Saldo:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Vsaldo" value="#{contaCBean.corrente.saldo} R$" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Vsaldo" converter="javax.faces.Number"
+                                  value="#{contaCBean.corrente.saldo} R$"/>
 
                     <p:outputLabel for="Vlimite" value="Limite:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Vlimite"
-                                  value="#{contaCBean.corrente.limite} R$" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Vlimite" converter="javax.faces.Number"
+                                  value="#{contaCBean.corrente.limite} R$"/>
 
                 </h:panelGrid>
 
                 <h:panelGrid columns="2">
-                    <p:commandButton value="Fechar" oncomplete="PF('dlgVisu').hide();" />
+                    <p:commandButton value="Fechar" oncomplete="PF('dlgVisu').hide();"/>
                     <p:commandButton value="Imprimir" type="button"
                                      icon="ui-icon-print">
-                        <p:printer target="formVisu" />
+                        <p:printer target="formVisu"/>
                     </p:commandButton>
                 </h:panelGrid>
             </h:form>
@@ -205,27 +208,29 @@
 
                 <h:panelGrid id="Spainel" columns="2">
                     <p:outputLabel for="Snome" value="Correntista:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Snome" value="#{contaCBean.corrente.nome}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Snome" value="#{contaCBean.corrente.nome}"/>
 
-                    <p:outputLabel for="Scpf" value="CPF:" style="font-weight: bold" />
-                    <h:outputText id="Scpf" value="#{contaCBean.corrente.cpf}" />
+                    <p:outputLabel for="Scpf" value="CPF:" style="font-weight: bold"/>
+                    <h:outputText id="Scpf" value="#{contaCBean.corrente.cpf}"/>
 
-                    <p:outputLabel for="Sct" value="Conta:" style="font-weight: bold" />
-                    <h:outputText id="Sct" value="#{contaCBean.corrente.conta}" />
+                    <p:outputLabel for="Sct" value="Conta:" style="font-weight: bold"/>
+                    <h:outputText id="Sct" value="#{contaCBean.corrente.conta}"/>
 
                     <p:outputLabel for="Ssaldo" value="Saldo:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Ssaldo" value="#{contaCBean.corrente.saldo}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Ssaldo" converter="javax.faces.Number"
+                                  value="#{contaCBean.corrente.saldo}"/>
 
                     <p:outputLabel for="Slimite" value="Limite:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Slimite"
-                                  value="#{contaCBean.corrente.limite}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Slimite" converter="javax.faces.Number"
+                                  value="#{contaCBean.corrente.limite}"/>
 
-                    <p:outputLabel for="Svalor" value="Valor Saque:" 
+                    <p:outputLabel for="Svalor" value="Valor Saque:"
                                    style="font-weight: bold; color: red"/>
-                    <p:inputText id="Svalor" value="#{contaCBean.valor}" size="08"/>
+                    <p:inputText id="Svalor" converter="javax.faces.Number"
+                                 value="#{contaCBean.valor}" size="08"/>
 
                 </h:panelGrid>
 
@@ -233,12 +238,12 @@
                     <p:commandButton value="Sacar"
                                      actionListener="#{contaCBean.sacar}"
                                      update=":mensagem :formSaque:Spainel
-                                     :formListagem:tabela :formSaque:Svalor" />
-                    <p:commandButton value="Fechar" oncomplete="PF('dlgSaque').hide();" />
+                                     :formListagem:tabela :formSaque:Svalor"/>
+                    <p:commandButton value="Fechar" oncomplete="PF('dlgSaque').hide();"/>
                 </h:panelGrid>
             </h:form>
         </p:dialog>
-        
+
         <!-- Dialog para visualização do deposito -->
         <p:dialog header="Depósito Corrente" widgetVar="dlgDep"
                   draggable="false" resizable="false" modal="true" closable="false"
@@ -247,27 +252,29 @@
 
                 <h:panelGrid id="Dpainel" columns="2">
                     <p:outputLabel for="Dnome" value="Correntista:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Dnome" value="#{contaCBean.corrente.nome}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Dnome" value="#{contaCBean.corrente.nome}"/>
 
-                    <p:outputLabel for="Dcpf" value="CPF:" style="font-weight: bold" />
-                    <h:outputText id="Dcpf" value="#{contaCBean.corrente.cpf}" />
+                    <p:outputLabel for="Dcpf" value="CPF:" style="font-weight: bold"/>
+                    <h:outputText id="Dcpf" value="#{contaCBean.corrente.cpf}"/>
 
-                    <p:outputLabel for="Dct" value="Conta:" style="font-weight: bold" />
-                    <h:outputText id="Dct" value="#{contaCBean.corrente.conta}" />
+                    <p:outputLabel for="Dct" value="Conta:" style="font-weight: bold"/>
+                    <h:outputText id="Dct" value="#{contaCBean.corrente.conta}"/>
 
                     <p:outputLabel for="Dsaldo" value="Saldo:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Dsaldo" value="#{contaCBean.corrente.saldo}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Dsaldo" converter="javax.faces.Number"
+                                  value="#{contaCBean.corrente.saldo}"/>
 
                     <p:outputLabel for="Dlimite" value="Limite:"
-                                   style="font-weight: bold" />
-                    <h:outputText id="Dlimite"
-                                  value="#{contaCBean.corrente.limite}" />
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Dlimite" converter="javax.faces.Number"
+                                  value="#{contaCBean.corrente.limite}"/>
 
-                    <p:outputLabel for="Dvalor" value="Valor Deposito:" 
+                    <p:outputLabel for="Dvalor" value="Valor Deposito:"
                                    style="font-weight: bold; color: blue"/>
-                    <p:inputText id="Dvalor" value="#{contaCBean.valor}" size="08"/>
+                    <p:inputText id="Dvalor" converter="javax.faces.Number"
+                                 value="#{contaCBean.valor}" size="08"/>
 
                 </h:panelGrid>
 
@@ -275,8 +282,8 @@
                     <p:commandButton value="Depositar"
                                      actionListener="#{contaCBean.depositar}"
                                      update=":mensagem :formDep:Dpainel
-                                     :formListagem:tabela :formDep:Dvalor" />
-                    <p:commandButton value="Fechar" oncomplete="PF('dlgDep').hide();" />
+                                     :formListagem:tabela :formDep:Dvalor"/>
+                    <p:commandButton value="Fechar" oncomplete="PF('dlgDep').hide();"/>
                 </h:panelGrid>
             </h:form>
         </p:dialog>

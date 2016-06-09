@@ -5,10 +5,10 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Conexão com o banco de dados -->
-        <property name="connection.url">jdbc:mysql://192.168.200.6:3306/banco</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/banco</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.username">aptech</property>
-        <property name="connection.password">Aptech2016</property>
+        <property name="connection.username">ibta</property>
+        <property name="connection.password">helloworld</property>
         <!-- Esquema de atualização das tabelas -->
         <property name="hbm2ddl.auto">update</property>
         <!-- Sessão -->
