@@ -4,9 +4,8 @@ import br.com.nfsconsultoria.bancoibta.dao.contaPoupancaDAO;
 import br.com.nfsconsultoria.bancoibta.domain.contaPoupanca;
 import org.omnifaces.util.Messages;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by luis on 07/06/16.
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class contaPBean {
 
     private contaPoupanca cPoupanca;
@@ -25,7 +24,7 @@ public class contaPBean {
         this.cPoupancas = contaDAO.listar();
     }
 
-    public contaPoupanca getcCorrente() {
+    public contaPoupanca getcPoupanca() {
         return cPoupanca;
     }
 
@@ -41,7 +40,6 @@ public class contaPBean {
         this.cPoupancas = cPoupancas;
     }
 
-    @PostConstruct
     public void listar() {
         try {
             contaPoupancaDAO contaDAO = new contaPoupancaDAO();

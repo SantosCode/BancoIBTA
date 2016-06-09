@@ -13,7 +13,7 @@ public class contaCorrente extends GenericDomain {
     @Column(nullable = false, length = 45)
     private String nome;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 15, unique = true)
     private String cpf;
 
     @Column(nullable = false, length = 45)

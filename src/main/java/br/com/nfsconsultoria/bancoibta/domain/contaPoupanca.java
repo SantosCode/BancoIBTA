@@ -13,14 +13,14 @@ public class contaPoupanca extends GenericDomain {
     @Column(nullable = false, length = 45)
     private String nome;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 15, unique = true)
     private String cpf;
 
     @Column(nullable = false, length = 45)
-    private Long conta;
+    private String conta;
 
     @Column(nullable = false, length = 45)
-    private Float saldo;
+    private Double saldo;
 
     public String getNome() {
         return nome;
@@ -38,19 +38,19 @@ public class contaPoupanca extends GenericDomain {
         this.cpf = cpf;
     }
 
-    public Long getConta() {
+    public String getConta() {
         return conta;
     }
 
-    public void setConta(Long conta) {
+    public void setConta(String conta) {
         this.conta = conta;
     }
 
-    public Float getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Float saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 }

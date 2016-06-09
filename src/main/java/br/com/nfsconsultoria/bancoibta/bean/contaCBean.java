@@ -4,20 +4,17 @@ import br.com.nfsconsultoria.bancoibta.dao.contaCorrenteDAO;
 import br.com.nfsconsultoria.bancoibta.domain.contaCorrente;
 import org.omnifaces.util.Messages;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.bean.SessionScoped;
 
 /**
  * Created by luis on 07/06/16.
  */
 @SuppressWarnings("serial")
 @ManagedBean
-@ViewScoped
 @SessionScoped
 public class contaCBean implements Serializable {
 
@@ -45,7 +42,6 @@ public class contaCBean implements Serializable {
         this.cCorrentes = cCorrentes;
     }
 
-    @PostConstruct
     public void listar() {
         try {
             contaCorrenteDAO contaDAO = new contaCorrenteDAO();
