@@ -2,175 +2,187 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/modelo.xhtml">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/template/modelo.xhtml">
 
-    <ui:define name="conteudo">
-        <h:form id="formListagem">
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
 
-            <!-- Listagem dos dados na Tabela -->
-            <p:panel header="Conta Corrente">
-                <p:dataTable id="tabela" emptyMessage="Nenhuma conta encontrada." var="conta" paginator="true"
-                             value="#{contaCBean.cCorrentes}" rows="10" paginatorPosition="top" rendered="true"
-                             liveResize="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink}">
-                    <f:facet name="header">
-                        <p:commandButton value="Novo Cadastro" actionListener="#{contaCBean.novo}"
-                                         oncomplete="PF('dialogo').show();"
-                                         update=":mensagem :formCadastro:painel :formCadastro:valor">
-                            <f:actionListener
-                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
-                        </p:commandButton>
+			<!-- Listagem dos dados na Tabela -->
+			<p:panel header="Conta Corrente">
+				<p:dataTable id="tabela" emptyMessage="Nenhuma conta encontrada."
+					var="conta" paginator="true" value="#{contaCBean.cCorrentes}"
+					rows="10" paginatorPosition="top" rendered="true" liveResize="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink}">
+					<f:facet name="header">
+						<p:commandButton value="Novo Cadastro"
+							actionListener="#{contaCBean.novo}"
+							oncomplete="PF('dialogo').show();"
+							update=":mensagem :formCadastro:painel :formCadastro:valor">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
 
-                    </f:facet>
-                    <p:column headerText="Correntista" filterBy="#{conta.nome}"
-                              sortBy="#{conta.nome}" colspan="1" 
-                              filterMatchMode="contains">
-                        <h:outputText value="#{conta.nome}"/>
-                    </p:column>
+					</f:facet>
+					<p:column headerText="Correntista" filterBy="#{conta.nome}"
+						sortBy="#{conta.nome}" colspan="1" filterMatchMode="contains">
+						<h:outputText value="#{conta.nome}" />
+					</p:column>
 
-                    <p:column headerText="CPF" filterBy="#{conta.cpf}"
-                              sortBy="#{conta.cpf}" filterMatchMode="contains">
-                        <h:outputText value="#{conta.cpf}"/>
+					<p:column headerText="CPF" filterBy="#{conta.cpf}"
+						sortBy="#{conta.cpf}" filterMatchMode="contains">
+						<h:outputText value="#{conta.cpf}" />
 
-                    </p:column><p:column headerText="Conta" filterBy="#{conta.conta}"
-                                         sortBy="#{conta.conta}" filterMatchMode="contains">
-                    <h:outputText value="#{conta.conta}"/>
-                </p:column>
+					</p:column>
+					<p:column headerText="Conta" filterBy="#{conta.conta}"
+						sortBy="#{conta.conta}" filterMatchMode="contains">
+						<h:outputText value="#{conta.conta}" />
+					</p:column>
 
-                    <p:column headerText="Saldo" filterBy="#{conta.saldo}"
-                              sortBy="#{conta.saldo}" filterMatchMode="contains">
-                        <h:outputText value="#{conta.saldo} R$"/>
-                    </p:column>
+					<p:column headerText="Saldo" filterBy="#{conta.saldo}"
+						sortBy="#{conta.saldo}" filterMatchMode="contains">
+						<h:outputText value="#{conta.saldo} R$" />
+					</p:column>
 
-                    <p:column headerText="Limite" filterBy="#{conta.limite}"
-                              sortBy="#{conta.limite}" filterMatchMode="contains" >
-                        <h:outputText value="#{conta.limite} R$"/>
-                    </p:column>
+					<p:column headerText="Limite" filterBy="#{conta.limite}"
+						sortBy="#{conta.limite}" filterMatchMode="contains">
+						<h:outputText value="#{conta.limite} R$" />
+					</p:column>
 
-                    <p:column headerText="Opções" exportable="false">
-                        <p:commandButton icon="ui-icon-trash"
-                                         actionListener="#{contaCBean.excluir}"
-                                         update=":mensagem :formListagem:tabela">
-                            <p:confirm header="Confirmação" message="Deseja excluir a conta corrente?"
-                                       icon="ui-icon-alert"/>
-                            <f:attribute name="contaSelecionada" value="#{conta}"/>
-                        </p:commandButton>
+					<p:column headerText="Opções" exportable="false">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{contaCBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir a conta corrente?" icon="ui-icon-alert" />
+							<f:attribute name="contaSelecionada" value="#{conta}" />
+						</p:commandButton>
 
-                        <p:commandButton icon="ui-icon-pencil"
-                                         actionListener="#{contaCBean.editar}"
-                                         update=":mensagem :formCadastro:painel :formCadastro:valor"
-                                         oncomplete="PF('dialogo').show();">
-                            <f:attribute name="contaSelecionada" value="#{conta}"/>
-                            <f:actionListener
-                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
-                        </p:commandButton>
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{contaCBean.editar}"
+							update=":mensagem :formCadastro:painel :formCadastro:valor"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="contaSelecionada" value="#{conta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
 
-                        <p:commandButton icon="ui-icon-info"
-                                         actionListener="#{contaCBean.editar}"
-                                         update=":mensagem :formListagem:tabela"
-                                         oncomplete="PF('dlgVisu').show();">
-                            <f:attribute name="contaSelecionada" value="#{conta}"/>
-                            <f:actionListener
-                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
-                        </p:commandButton>
-                    </p:column>
-                </p:dataTable>
-            </p:panel>
-            <p:confirmDialog global="true">
-                <p:commandButton value="Sim" type="button"
-                                 styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                <p:commandButton value="Não" type="button"
-                                 styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-            </p:confirmDialog>
-        </h:form>
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{contaCBean.editar}"
+							update=":mensagem :formCadastro:painel :formCadastro:valor"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="contaSelecionada" value="#{conta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
 
-        <!-- Dialog para novo cadastro -->
-        <p:dialog header="Conta Corrente - Cadastro" widgetVar="dialogo"
-                  draggable="false" resizable="false" modal="true" closable="false"
-                  appendTo="@(body)" showEffect="clip" responsive="true" dynamic="true">
 
-            <h:form id="formCadastro">
-                <h:panelGrid id="painel" columns="2">
-                    <p:outputLabel for="nome" value="Correntista:"/>
-                    <p:inputText id="nome" maxlength="45" size="30"
-                                 value="#{contaCBean.cCorrente.nome}" required="true"
-                                 requiredMessage="O campo correntista é obrigatório"/>
+						<p:commandButton icon="ui-icon-circle-minus"
+							actionListener="#{contaCBean.sacar}"
+							update=":mensagem :formListagem:tabela"
+							oncomplete="PF('dlgVisu').show();">
+							<f:attribute name="contaSelecionada" value="#{conta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
 
-                    <p:outputLabel for="cpf" value="CPF:"/>
-                    <p:inputMask id="cpf" mask="999.999.999-99" required="true"
-                                 requiredMessage="O campo cpf é obrigatório"
-                                 value="#{contaCBean.cCorrente.cpf}"/>
+		<!-- Dialog para novo cadastro -->
+		<p:dialog header="Conta Corrente - Cadastro" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false"
+			appendTo="@(body)" showEffect="clip" responsive="true" dynamic="true">
 
-                    <p:outputLabel for="ct" value="Conta:"/>
-                    <p:inputMask id="ct" mask="99999999" required="true"
-                                 requiredMessage="O campo conta é obrigatório"
-                                 value="#{contaCBean.cCorrente.conta}"/>
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="nome" value="Correntista:" />
+					<p:inputText id="nome" maxlength="45" size="30"
+						value="#{contaCBean.cCorrente.nome}" required="true"
+						requiredMessage="O campo correntista é obrigatório" />
 
-                </h:panelGrid>
-                    <p:panelGrid id="valor" columns="3">
-                    <p:outputLabel for="saldo" value="Saldo:"/>
-                    <p:inputText id="saldo" required="true"
-                                 size="10"
-                                 requiredMessage="Campo saldo obrigatório"
-                                 value="#{contaCBean.cCorrente.saldo}"/> R$
+					<p:outputLabel for="cpf" value="CPF:" />
+					<p:inputMask id="cpf" mask="999.999.999-99" required="true"
+						requiredMessage="O campo cpf é obrigatório"
+						value="#{contaCBean.cCorrente.cpf}" />
+
+					<p:outputLabel for="ct" value="Conta:" />
+					<p:inputMask id="ct" mask="99999999" required="true"
+						requiredMessage="O campo conta é obrigatório"
+						value="#{contaCBean.cCorrente.conta}" />
+
+				</h:panelGrid>
+				<p:panelGrid id="valor" columns="3">
+					<p:outputLabel for="saldo" value="Saldo:" />
+					<p:inputText id="saldo" required="true" size="10"
+						requiredMessage="Campo saldo obrigatório"
+						value="#{contaCBean.cCorrente.saldo}" /> R$
                     
 
-                    <p:outputLabel for="limite" value="Limite:"/>
-                    <p:inputText id="limite" required="true"
-                                 size="10"
-                                 requiredMessage="Campo limite obrigatório"
-                                 value="#{contaCBean.cCorrente.limite}"/> R$
+                    <p:outputLabel for="limite" value="Limite:" />
+					<p:inputText id="limite" required="true" size="10"
+						requiredMessage="Campo limite obrigatório"
+						value="#{contaCBean.cCorrente.limite}" /> R$
                     </p:panelGrid>
 
-                <h:panelGrid columns="2">
-                    <p:commandButton value="Salvar"
-                                     actionListener="#{contaCBean.salvar}"
-                                     update=":mensagem :formCadastro:painel 
-                                     :formCadastro:valor :formListagem:tabela"/>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{contaCBean.salvar}"
+						update=":mensagem :formCadastro:painel 
+                                     :formCadastro:valor :formListagem:tabela" />
 
-                    <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
 
-        <!-- Dialog para visualização do item cadastrado -->
-        <p:dialog header="Conta Corrente" widgetVar="dlgVisu" draggable="false"
-                  resizable="false" modal="true" closable="false" appendTo="@(body)"
-                  showEffect="clip" responsive="true" dynamic="true">
-            <h:form id="formVisu">
+		<!-- Dialog para visualização do item cadastrado -->
+		<p:dialog header="Conta Corrente" widgetVar="dlgVisu"
+			draggable="false" resizable="false" modal="true" closable="false"
+			appendTo="@(body)" showEffect="clip" responsive="true" dynamic="true">
+			<h:form id="formVisu">
 
-                <h:panelGrid id="Vpainel" columns="2">
-                    <p:outputLabel for="Vnome" value="Correntista:" style="font-weight: bold"/>
-                    <h:outputText id="Vnome" value="#{contaCBean.cCorrente.nome}"/>
+				<h:panelGrid id="Vpainel" columns="2">
+					<p:outputLabel for="Vnome" value="Correntista:"
+						style="font-weight: bold" />
+					<h:outputText id="Vnome" value="#{contaCBean.cCorrente.nome}" />
 
-                    <p:outputLabel for="Vcpf" value="CPF:" style="font-weight: bold"/>
-                    <h:outputText id="Vcpf" value="#{contaCBean.cCorrente.cpf}"/>
+					<p:outputLabel for="Vcpf" value="CPF:" style="font-weight: bold" />
+					<h:outputText id="Vcpf" value="#{contaCBean.cCorrente.cpf}" />
 
-                    <p:outputLabel for="Vct" value="Conta:" style="font-weight: bold"/>
-                    <h:outputText id="Vct" value="#{contaCBean.cCorrente.conta}"/>
+					<p:outputLabel for="Vct" value="Conta:" style="font-weight: bold" />
+					<h:outputText id="Vct" value="#{contaCBean.cCorrente.conta}" />
 
-                    <p:outputLabel for="Vsaldo" value="Saldo:" style="font-weight: bold"/>
-                    <h:outputText id="Vsaldo" value="#{contaCBean.cCorrente.saldo} R$"/>
+					<p:outputLabel for="Vsaldo" value="Saldo:"
+						style="font-weight: bold" />
+					<h:outputText id="Vsaldo" value="#{contaCBean.cCorrente.saldo} R$" />
 
-                    <p:outputLabel for="Vlimite" value="Limite:"
-                                   style="font-weight: bold"/>
-                    <h:outputText id="Vlimite" value="#{contaCBean.cCorrente.limite} R$"/>
+					<p:outputLabel for="Vlimite" value="Limite:"
+						style="font-weight: bold" />
+					<h:outputText id="Vlimite"
+						value="#{contaCBean.cCorrente.limite} R$" />
 
-                </h:panelGrid>
+				</h:panelGrid>
 
-                <h:panelGrid columns="2">
-                    <p:commandButton value="Fechar" oncomplete="PF('dlgVisu').hide();"/>
-                    <p:commandButton value="Imprimir" type="button"
-                                     icon="ui-icon-print">
-                        <p:printer target="formVisu"/>
-                    </p:commandButton>
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
-    </ui:define>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Fechar" oncomplete="PF('dlgVisu').hide();" />
+					<p:commandButton value="Imprimir" type="button"
+						icon="ui-icon-print">
+						<p:printer target="formVisu" />
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
 
 </ui:composition>

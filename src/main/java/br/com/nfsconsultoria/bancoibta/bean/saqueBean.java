@@ -1,16 +1,17 @@
 package br.com.nfsconsultoria.bancoibta.bean;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import org.omnifaces.util.Messages;
+
 import br.com.nfsconsultoria.bancoibta.dao.contaCorrenteDAO;
 import br.com.nfsconsultoria.bancoibta.dao.contaPoupancaDAO;
 import br.com.nfsconsultoria.bancoibta.domain.contaCorrente;
 import br.com.nfsconsultoria.bancoibta.domain.contaPoupanca;
-
-import org.omnifaces.util.Messages;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by luis on 07/06/16.
@@ -112,7 +113,7 @@ public class saqueBean implements Serializable {
 			Messages.addGlobalError("Ocorreu o erro " + erro.getMessage() + " ao tentar sacar");
 		}
 	}
-	
+
 	public void saquePoupanca() {
 		try {
 			contaPoupancaDAO contaPDAO = new contaPoupancaDAO();
