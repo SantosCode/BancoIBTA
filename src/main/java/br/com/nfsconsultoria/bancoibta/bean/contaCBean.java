@@ -7,17 +7,15 @@ import org.omnifaces.util.Messages;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by luissantos on 07/06/16.
  * @author luissantos
  */
-@SuppressWarnings("serial")
 @ManagedBean
 @SessionScoped
-public class ContaCBean implements Serializable {
+public class ContaCBean {
 
     private ContaCorrente corrente;
     private List<ContaCorrente> correntes;

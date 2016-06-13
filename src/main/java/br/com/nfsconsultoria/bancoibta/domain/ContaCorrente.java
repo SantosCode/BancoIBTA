@@ -2,16 +2,15 @@ package br.com.nfsconsultoria.bancoibta.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
 
 /**
  * Created by luissantos on 06/06/16.
  *
  * @author luissantos
  */
-@SuppressWarnings("serial")
+
 @Entity
-public class ContaCorrente extends GenericDomain implements Serializable {
+public class ContaCorrente extends GenericDomain {
 
     @Column(nullable = false, length = 45)
     private String nome;

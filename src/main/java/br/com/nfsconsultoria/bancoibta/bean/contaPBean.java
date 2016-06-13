@@ -10,17 +10,19 @@ import javax.faces.event.ActionEvent;
 import java.util.List;
 
 /**
- * Created by luis on 07/06/16.
+ * Created by luissantos on 07/06/16.
+ *
+ * @author luissantos
  */
 @ManagedBean
 @SessionScoped
-public class contaPBean {
+public class ContaPBean {
 
     private ContaPoupanca poupanca;
     private List<ContaPoupanca> poupancas;
     private Double valor;
 
-    public contaPBean() {
+    public ContaPBean() {
         ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
         this.poupancas = contaDAO.listar();
     }
@@ -107,7 +109,7 @@ public class contaPBean {
             erro.printStackTrace();
         }
     }
-    
+
     public void sacar() {
 
         try {
@@ -149,6 +151,24 @@ public class contaPBean {
                 listar();
                 this.valor = null;
             }
+
+        } catch (RuntimeException erro) {
+            Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()
+                    + " ao tentar editar conta corrente");
+            erro.printStackTrace();
+        }
+    }
+
+    public void reajuste(ActionEvent evento) {
+
+        try {
+            poupanca = (ContaPoupanca) evento.getComponent().getAttributes().get("contaSelecionada");
+            valor = this.poupanca.getSaldo() * (1 + 0.02);
+            ContaPoupancaDAO contaDAO = new ContaPoupancaDAO();
+            poupanca.setSaldo(valor);
+            contaDAO.merge(poupanca);
+            this.valor = null;
+            listar();
 
         } catch (RuntimeException erro) {
             Messages.addGlobalError("Ocorreu o erro " + erro.getMessage()

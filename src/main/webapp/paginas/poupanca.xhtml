@@ -102,6 +102,15 @@
                             <f:actionListener
                                     type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
                         </p:commandButton>
+
+                        <!-- Efetua a transação de reajuste na conta -->
+                        <p:commandButton icon="ui-icon-circlesmall-plus" value="Reajuste"
+                                         actionListener="#{contaPBean.reajuste}"
+                                         update=":mensagem :formListagem:tabela">
+                            <f:attribute name="contaSelecionada" value="#{conta}"/>
+                            <f:actionListener
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
+                        </p:commandButton>
                     </p:column>
                 </p:dataTable>
             </p:panel>
