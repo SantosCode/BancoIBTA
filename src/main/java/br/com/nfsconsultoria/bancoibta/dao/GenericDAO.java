@@ -148,7 +148,8 @@ public class GenericDAO<Entidade> {
         Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
         try {
-            Criteria consulta = sessao.createCriteria(classe).setFetchMode(objeto, FetchMode.EAGER);
+            @SuppressWarnings("deprecation")
+			Criteria consulta = sessao.createCriteria(classe).setFetchMode(objeto, FetchMode.EAGER);
             List<Entidade> resultado = consulta.list();
             return resultado;
         } catch (RuntimeException erro) {
