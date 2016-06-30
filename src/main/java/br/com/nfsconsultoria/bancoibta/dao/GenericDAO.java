@@ -144,6 +144,7 @@ public class GenericDAO<Entidade> {
     }
 
     @SuppressWarnings("unchecked")
+    /*Tratar erro de Lazy Exception*/
     public List<Entidade> listarLazy(String objeto) {
         Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml">
+
+    <ui:define name="conteudo">
+        <h:form id="formListagem">
+
+            <!-- Listagem dos dados na Tabela -->
+            <p:panel header="Cliente">
+                <p:dataTable id="tabela" emptyMessage="Nenhuma conta encontrada."
+                             var="pessoa" paginator="true" value="#{pessoaBean.pessoas}"
+                             rows="10" paginatorPosition="top" rendered="true" liveResize="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink}">
+                    <f:facet name="header">
+                        <p:commandButton value="Novo Cadastro"
+                                         actionListener="#{pessoaBean.novo}"
+                                         oncomplete="PF('dialogo').show();"
+                                         update=":mensagem :formCadastro:painel">
+                            <f:actionListener
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
+                        </p:commandButton>
+
+                    </f:facet>
+                    <p:column headerText="Cliente" filterBy="#{pessoa.nome}"
+                              sortBy="#{pessoa.nome}" colspan="1" filterMatchMode="contains">
+                        <h:outputText value="#{pessoa.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="CPF" filterBy="#{pessoa.cpf}"
+                              sortBy="#{pessoa.cpf}" filterMatchMode="contains">
+                        <h:outputText value="#{pessoa.cpf}"/>
+                    </p:column>
+
+                    <p:column headerText="Opções" exportable="false">
+                        <!-- Exclui o item do banco de dados -->
+                        <p:commandButton icon="ui-icon-trash"
+                                         actionListener="#{pessoaBean.excluir}"
+                                         update=":mensagem :formListagem:tabela">
+                            <p:confirm header="Confirmação"
+                                       message="Deseja excluir o cliente?" icon="ui-icon-alert"/>
+                            <f:attribute name="pessoaSelecionada" value="#{pessoa}"/>
+                        </p:commandButton>
+                        <p:confirmDialog global="true">
+                            <p:commandButton value="Sim" type="button"
+                                             styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                            <p:commandButton value="Não" type="button"
+                                             styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                        </p:confirmDialog>
+
+                        <!-- Edita o item no banco de dados -->
+                        <p:commandButton icon="ui-icon-pencil"
+                                         actionListener="#{pessoaBean.editar}"
+                                         update=":mensagem :formCadastro:painel"
+                                         oncomplete="PF('dialogo').show();">
+                            <f:attribute name="pessoaSelecionada" value="#{pessoa}"/>
+                            <f:actionListener
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
+                        </p:commandButton>
+
+                        <!-- Visualiza o item no banco de dados -->
+                        <p:commandButton icon="ui-icon-search"
+                                         actionListener="#{pessoaBean.editar}"
+                                         update=":mensagem :formListagem:tabela :formVisu:Vpainel"
+                                         oncomplete="PF('dlgVisu').show();">
+                            <f:attribute name="pessoaSelecionada" value="#{pessoa}"/>
+                            <f:actionListener
+                                    type="org.omnifaces.eventlistener.ResetInputAjaxActionListener"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+        <!-- Dialog para novo cadastro -->
+        <p:dialog header="Cliente - Cadastro" widgetVar="dialogo"
+                  draggable="false" resizable="false" modal="true" closable="false"
+                  appendTo="@(body)" showEffect="clip" responsive="true" dynamic="true">
+
+            <h:form id="formCadastro">
+                <h:panelGrid id="painel" columns="2">
+                    <p:outputLabel for="nome" value="Cliente:"/>
+                    <p:inputText id="nome" maxlength="45" size="30"
+                                 value="#{pessoaBean.pessoa.nome}" required="true"
+                                 requiredMessage="O campo correntista é obrigatório"/>
+
+                    <p:outputLabel for="cpf" value="CPF:"/>
+                    <p:inputMask id="cpf" mask="999.999.999-99" required="true"
+                                 requiredMessage="O campo cpf é obrigatório"
+                                 value="#{pessoaBean.pessoa.cpf}"/>
+                </h:panelGrid>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar"
+                                     actionListener="#{pessoaBean.salvar}"
+                                     update=":mensagem :formCadastro:painel
+                                     :formListagem:tabela"/>
+
+                    <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <!-- Dialog para visualização dos itens cadastrados -->
+        <p:dialog header="Cliente" widgetVar="dlgVisu"
+                  draggable="false" resizable="false" modal="true" closable="false"
+                  appendTo="@(body)" showEffect="clip" responsive="true" dynamic="true">
+            <h:form id="formVisu">
+
+                <h:panelGrid id="Vpainel" columns="2">
+                    <p:outputLabel for="Vnome" value="Cliente:"
+                                   style="font-weight: bold"/>
+                    <h:outputText id="Vnome" value="#{pessoaBean.pessoa.nome}"/>
+
+                    <p:outputLabel for="Vcpf" value="CPF:" style="font-weight: bold"/>
+                    <h:outputText id="Vcpf" value="#{pessoaBean.pessoa.cpf}"/>
+                </h:panelGrid>
+
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Fechar" oncomplete="PF('dlgVisu').hide();"/>
+                    <p:commandButton value="Imprimir" type="button"
+                                     icon="ui-icon-print">
+                        <p:printer target="formVisu"/>
+                    </p:commandButton>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
