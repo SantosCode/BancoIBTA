@@ -20,7 +20,7 @@
 
     <build>
         <!-- Nome do projeto empacotado -->
-        <finalName>NFSuporte</finalName>
+        <finalName>BancoIBTA</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

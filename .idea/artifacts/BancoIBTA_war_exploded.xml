@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="BancoIBTA:war exploded">
-    <output-path>$PROJECT_DIR$/target/NFSuporte</output-path>
+    <output-path>$PROJECT_DIR$/target/BancoIBTA</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -27,7 +27,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/NFSuporte/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/BancoIBTA/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="BancoIBTA/web/Web" />
     </root>
