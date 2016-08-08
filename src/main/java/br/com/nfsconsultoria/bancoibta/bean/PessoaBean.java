@@ -1,5 +1,6 @@
 package br.com.nfsconsultoria.bancoibta.bean;
 
+import br.com.nfsconsultoria.bancoibta.dao.ContaDAO;
 import br.com.nfsconsultoria.bancoibta.dao.PessoaDAO;
 import br.com.nfsconsultoria.bancoibta.domain.Pessoa;
 import org.omnifaces.util.Messages;
