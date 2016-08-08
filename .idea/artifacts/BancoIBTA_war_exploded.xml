@@ -27,9 +27,7 @@
           <element id="library" level="project" name="Maven: javax.transaction:javax.transaction-api:1.2" />
           <element id="library" level="project" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0.1" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.0-b01" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:eclipselink:2.5.2" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.1.0" />
-          <element id="library" level="project" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" />
+          <element id="library" level="project" name="Maven: jaxen:jaxen:1.1.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">
