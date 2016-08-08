@@ -7,6 +7,7 @@ import org.hibernate.service.ServiceRegistry;
 
 /**
  * Created by luissantos on 06/06/16.
+ * @author luissantos
  */
 public class HibernateUtil {
     private static SessionFactory fabricaDeSessoes = criarFabricaDeSesoes();

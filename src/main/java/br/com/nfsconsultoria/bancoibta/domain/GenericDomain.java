@@ -7,6 +7,7 @@ import javax.persistence.MappedSuperclass;
 
 /**
  * Created by luissantos on 06/06/16.
+ * @author luissantos
  */
 @MappedSuperclass
 public class GenericDomain {
