@@ -12,13 +12,14 @@ import java.util.List;
 
 /**
  * Created by luissantos on 06/06/16.
+ * @author luissantos
  */
 public class GenericDAO<Entidade> {
     private Class<Entidade> classe;
 
     // Contrutor
     @SuppressWarnings("unchecked")
-	public GenericDAO() {
+    public GenericDAO() {
         this.classe = (Class<Entidade>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }
@@ -102,7 +103,7 @@ public class GenericDAO<Entidade> {
         try {
             Criteria consulta = sessao.createCriteria(classe);
             consulta.add(Restrictions.idEq(codigo));
-			Entidade resultado = (Entidade) consulta.uniqueResult();
+            Entidade resultado = (Entidade) consulta.uniqueResult();
             return resultado;
         } catch (RuntimeException erro) {
             throw erro;
@@ -117,7 +118,7 @@ public class GenericDAO<Entidade> {
 
         try {
             Criteria consulta = sessao.createCriteria(classe);
-			List<Entidade> resultado = consulta.list();
+            List<Entidade> resultado = consulta.list();
             return resultado;
         } catch (RuntimeException erro) {
             throw erro;
@@ -143,10 +144,12 @@ public class GenericDAO<Entidade> {
     }
 
     @SuppressWarnings("unchecked")
+    /*Tratar erro de Lazy Exception*/
     public List<Entidade> listarLazy(String objeto) {
         Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
-        try {           
+        try {
+            @SuppressWarnings("deprecation")
 			Criteria consulta = sessao.createCriteria(classe).setFetchMode(objeto, FetchMode.EAGER);
             List<Entidade> resultado = consulta.list();
             return resultado;
