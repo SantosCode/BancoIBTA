@@ -5,17 +5,18 @@
  */
 package br.com.nfsconsultoria.bancoibta.bean.service;
 
-import br.com.nfsconsultoria.bancoibta.bean.Pessoa;
-import java.util.List;
+import br.com.nfsconsultoria.bancoibta.domain.Pessoa;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  *
  * @author luissantos
  */
 @javax.ejb.Stateless
-@javax.ws.rs.Path("br.com.nfsconsultoria.bancoibta.bean.pessoa")
+@javax.ws.rs.Path("br.com.nfsconsultoria.bancoibta.domain.Pessoa")
 public class PessoaFacadeREST extends AbstractFacade<Pessoa> {
 
     @PersistenceContext(unitName = "br.com.nfsconsultoria_BancoIBTA_war_1.0-BETAPU")

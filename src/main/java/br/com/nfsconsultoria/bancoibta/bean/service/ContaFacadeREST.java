@@ -5,17 +5,18 @@
  */
 package br.com.nfsconsultoria.bancoibta.bean.service;
 
-import br.com.nfsconsultoria.bancoibta.bean.Conta;
-import java.util.List;
+import br.com.nfsconsultoria.bancoibta.domain.Conta;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  *
  * @author luissantos
  */
 @javax.ejb.Stateless
-@javax.ws.rs.Path("br.com.nfsconsultoria.bancoibta.bean.conta")
+@javax.ws.rs.Path("br.com.nfsconsultoria.bancoibta.domain.Conta")
 public class ContaFacadeREST extends AbstractFacade<Conta> {
 
     @PersistenceContext(unitName = "br.com.nfsconsultoria_BancoIBTA_war_1.0-BETAPU")
